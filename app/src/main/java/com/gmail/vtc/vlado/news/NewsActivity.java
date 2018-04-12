@@ -11,11 +11,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,14 +22,12 @@ public class NewsActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<News>> {
 
     private static final String LOG_TAG = NewsActivity.class.getName();
-
     private static final int NEWS_LOADER_ID = 1;
     private static final String GUARDIAN_URL = "http://content.guardianapis.com/search?production-office=uk&order-by=newest&use-date=published&show-tags=contributor&page=1&page-size=100&api-key=4aee8688-7436-4430-8b44-175e47a99404";
     private ProgressBar progressBar;
     private TextView emptyView;
     private NewsAdapter newsAdapter;
     private RecyclerView mRecyclerView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,18 +46,16 @@ public class NewsActivity extends AppCompatActivity
         if (networkInfo != null && networkInfo.isConnected()) {
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
-        } else {
+        }else {
             progressBar.setVisibility(View.GONE);
             emptyView.setText(R.string.no_internet);
         }
 
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
-        newsAdapter = new NewsAdapter(this,  new ArrayList<News>());
+        newsAdapter = new NewsAdapter(this, new ArrayList<News>());
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(newsAdapter);
-
-
     }
 
     @Override
@@ -72,21 +66,21 @@ public class NewsActivity extends AppCompatActivity
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
         Log.e(LOG_TAG, "onLoadFinished");
-//        newsAdapter.clear();
-
+        newsAdapter.clear();
 
         if (data != null && !data.isEmpty()) {
-//            newsAdapter.addAll(data);
+            newsAdapter.addAll(data);
+            emptyView.setVisibility(View.GONE);
+            progressBar.setVisibility(View.GONE);
+        } else {
+            progressBar.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+            emptyView.setText(R.string.no_news);
         }
-
-        progressBar.setVisibility(View.GONE);
-        emptyView.setText(R.string.no_news);
-
     }
 
     @Override
     public void onLoaderReset(Loader<List<News>> loader) {
-//        newsAdapter.clear();
-
+        newsAdapter.clear();
     }
 }

@@ -28,9 +28,7 @@ public final class QueryUtils {
     public static List<News> fetchNewsData(String requestUrl) {
 
         URL url = createUrl(requestUrl);
-
         String jsonResponse = null;
-
         try {
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
@@ -38,20 +36,17 @@ public final class QueryUtils {
         }
 
         List<News> newsData = extractFeatureFromJson(jsonResponse);
-
         return newsData;
     }
 
     private static URL createUrl(String requestUrl) {
 
         URL url = null;
-
         try {
             url = new URL(requestUrl);
         } catch (MalformedURLException e) {
             Log.e(LOG_TAG, "Problem with the URL", e);
         }
-
         return url;
     }
 
@@ -118,9 +113,7 @@ public final class QueryUtils {
 
             JSONObject response = baseJsonObject.getJSONObject("response");
             JSONArray result = response.getJSONArray("results");
-
             for (int i = 0; i < result.length(); i++) {
-
                 JSONObject currentNews = result.getJSONObject(i);
 
                 String title = currentNews.getString("webTitle");
@@ -129,13 +122,11 @@ public final class QueryUtils {
                 String url = currentNews.getString("webUrl");
                 String author = "";
 
-
                 JSONArray tagObje = currentNews.getJSONArray("tags");
                 for (int j = 0; j < tagObje.length(); j++) {
                     JSONObject tagObject = tagObje.getJSONObject(j);
                     author = tagObject.getString("webTitle");
                 }
-
                 News newsJson = new News(title, dateAndTime, section, author, url);
                 news.add(newsJson);
             }

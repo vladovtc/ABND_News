@@ -16,19 +16,16 @@ public class NewsLoader extends AsyncTaskLoader<List<News>> {
 
     @Override
     protected void onStartLoading() {
-
         forceLoad();
     }
 
     @Override
     public List<News> loadInBackground() {
 
-        if (mUrl == null){
+        if (mUrl == null) {
             return null;
         }
-
         List<News> news = QueryUtils.fetchNewsData(mUrl);
-
         return news;
     }
 }
