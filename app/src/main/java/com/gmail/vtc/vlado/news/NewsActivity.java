@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -22,6 +23,7 @@ import java.util.List;
 public class NewsActivity extends AppCompatActivity
         implements LoaderManager.LoaderCallbacks<List<News>> {
 
+    private static final String LOG_TAG = NewsActivity.class.getName();
 
     private static final int NEWS_LOADER_ID = 1;
     private static final String GUARDIAN_URL = "http://content.guardianapis.com/search?production-office=uk&order-by=newest&use-date=published&show-tags=contributor&page=1&page-size=100&api-key=4aee8688-7436-4430-8b44-175e47a99404";
@@ -69,9 +71,9 @@ public class NewsActivity extends AppCompatActivity
 
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
-        Toast.makeText(this, "onLoadFinished", Toast.LENGTH_LONG).show();
-
+        Log.e(LOG_TAG, "onLoadFinished");
 //        newsAdapter.clear();
+
 
         if (data != null && !data.isEmpty()) {
 //            newsAdapter.addAll(data);
