@@ -17,4 +17,15 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="CustomTextViewStyle">
+        <item name="android:layout_width">@dimen/dp0</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingBottom">@dimen/dp8</item>
+        <item name="android:paddingLeft">@dimen/dp16</item>
+        <item name="android:paddingRight">@dimen/dp16</item>
+        <item name="android:paddingTop">@dimen/dp8</item>
+    </style>
+
 </resources>

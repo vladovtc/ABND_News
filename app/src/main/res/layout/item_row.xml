@@ -30,34 +30,15 @@
 
         <TextView
             android:id="@+id/tv_date"
-            android:layout_width="@dimen/dp0"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="@dimen/dp8"
-            android:paddingLeft="@dimen/dp16"
-            android:paddingRight="@dimen/dp16"
-            android:paddingTop="@dimen/dp8"
+            style="@style/CustomTextViewStyle"
             android:textColor="@android:color/black"
             tools:text="2018-04-11" />
 
-        <View
-            android:layout_width="@dimen/dp1"
-            android:layout_height="match_parent"
-            android:background="@android:color/black" />
+        <include layout="@layout/line_horizontal" />
 
         <TextView
             android:id="@+id/tv_time"
-            android:layout_width="@dimen/dp0"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="@dimen/dp8"
-            android:paddingLeft="@dimen/dp16"
-            android:paddingRight="@dimen/dp16"
-            android:paddingTop="@dimen/dp8"
+            style="@style/CustomTextViewStyle"
             android:textColor="@android:color/black"
             tools:text="08:21:46" />
 
@@ -73,32 +54,15 @@
 
         <TextView
             android:id="@+id/tv_section"
-            android:layout_width="@dimen/dp0"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="@dimen/dp8"
-            android:paddingLeft="@dimen/dp16"
-            android:paddingRight="@dimen/dp16"
-            android:paddingTop="@dimen/dp8"
+            style="@style/CustomTextViewStyle"
             android:textColor="@android:color/black"
             tools:text="Business" />
 
-        <View
-            android:layout_width="@dimen/dp1"
-            android:layout_height="match_parent"
-            android:background="@android:color/black" />
+        <include layout="@layout/line_horizontal" />
 
         <TextView
             android:id="@+id/tv_author"
-            android:layout_width="@dimen/dp0"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:paddingBottom="@dimen/dp8"
-            android:paddingLeft="@dimen/dp16"
-            android:paddingRight="@dimen/dp16"
-            android:paddingTop="@dimen/dp8"
+            style="@style/CustomTextViewStyle"
             android:textColor="@android:color/black"
             tools:text="Julia Kollewe" />
 
