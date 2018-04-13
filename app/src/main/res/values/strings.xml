@@ -2,5 +2,5 @@
     <string name="app_name">News</string>
     <string name="action_settings">Settings</string>
     <string name="no_internet">No internet connection</string>
-    <string name="no_news">No new News</string>
+    <string name="no_news">No News updates available,\n please check back later or try again.</string>
 </resources>

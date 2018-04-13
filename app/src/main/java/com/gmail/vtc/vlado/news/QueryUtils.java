@@ -53,6 +53,9 @@ public final class QueryUtils {
     private static String makeHttpRequest(URL url) throws IOException {
 
         String jsonResponse = "";
+        int readTimeout = 10000;
+        int connectTimeout = 15000;
+        int validResponseCode = 200;
 
         if (url == null) {
             return jsonResponse;
@@ -63,12 +66,12 @@ public final class QueryUtils {
 
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000);
-            urlConnection.setConnectTimeout(15000);
+            urlConnection.setReadTimeout(readTimeout);
+            urlConnection.setConnectTimeout(connectTimeout);
             urlConnection.setRequestMethod("GET");
             urlConnection.connect();
 
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == validResponseCode) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {

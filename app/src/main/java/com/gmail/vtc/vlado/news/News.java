@@ -28,31 +28,15 @@ public class News {
         return dateAndTime;
     }
 
-    public void setDateAndTime(String dateAndTime) {
-        this.dateAndTime = dateAndTime;
-    }
-
     public String getSection() {
         return section;
-    }
-
-    public void setSection(String section) {
-        this.section = section;
     }
 
     public String getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
     public String getWebLink() {
         return webLink;
-    }
-
-    public void setWebLink(String webLink) {
-        this.webLink = webLink;
     }
 }
