@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="listArray">
+
+        <item>All</item>
+        <item>Football</item>
+        <item>Business</item>
+        <item>Sport</item>
+        <item>Books</item>
+        <item>World news</item>
+        <item>Opinion</item>
+        <item>Politics</item>
+        <item>Film</item>
+        <item>Money</item>
+        <item>Environment</item>
+        <item>Travel</item>
+        <item>Television and radio</item>
+        <item>Fashion</item>
+        <item>Society</item>
+        <item>Stage</item>
+
+
+    </string-array>
+</resources>
