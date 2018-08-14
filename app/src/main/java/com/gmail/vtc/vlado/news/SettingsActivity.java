@@ -7,6 +7,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.view.MenuItem;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
@@ -31,8 +32,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.settings_main);
 
-            Preference sortBy = findPreference(getString(R.string.key_sort_by));
+            Preference sortBy = findPreference(getString(R.string.sort_by_key));
             bindPreferenceSummaryToValue(sortBy);
+
+            Preference newsToShow = findPreference(getString(R.string.input_number_key));
+            bindPreferenceSummaryToValue(newsToShow);
 
         }
 

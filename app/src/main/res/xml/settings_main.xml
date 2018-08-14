@@ -4,6 +4,7 @@
     <ListPreference
         android:defaultValue="All"
         android:entries="@array/listArray"
+        android:entryValues="@array/listArray"
         android:key="@string/sort_by_key"
         android:summary="Sort by category"
         android:title="Sort By:" />

@@ -7,6 +7,7 @@ import android.content.Loader;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import java.security.SecurityPermission;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class NewsActivity extends AppCompatActivity
     private static final String LOG_TAG = NewsActivity.class.getName();
     private static final int NEWS_LOADER_ID = 1;
     private static final String GUARDIAN_URL =
-            "http://content.guardianapis.com/search?production-office=uk&order-by=newest&use-date=published&show-tags=contributor&page=1&page-size=100&api-key=4aee8688-7436-4430-8b44-175e47a99404";
+            "http://content.guardianapis.com/search";
     private ProgressBar progressBar;
     private TextView emptyView;
     private NewsAdapter newsAdapter;
@@ -89,12 +91,48 @@ public class NewsActivity extends AppCompatActivity
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
+        if (key.equals(getString(R.string.input_number_key)) ||
+                key.equals(getString(R.string.sort_by_key))){
+            newsAdapter.clear();
+
+            emptyView.setVisibility(View.GONE);
+
+            getLoaderManager().restartLoader(NEWS_LOADER_ID, null, this);
+        }
+
 
     }
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
-        return new NewsLoader(this, GUARDIAN_URL);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        String newsToShow = sharedPreferences.getString(
+                getString(R.string.news_to_show_key),
+                getString(R.string.news_to_show_default));
+
+        String sortBy = sharedPreferences.getString(
+                getString(R.string.sort_by_key),
+                getString(R.string.sort_by_default));
+
+        Uri baseUri = Uri.parse(GUARDIAN_URL);
+        Uri.Builder uriBuilder = baseUri.buildUpon();
+
+        uriBuilder.appendQueryParameter("production-office", "uk");
+        uriBuilder.appendQueryParameter("order-by", "newest");
+        uriBuilder.appendQueryParameter("use-date", "published");
+        uriBuilder.appendQueryParameter("show-tags", "contributor");
+        uriBuilder.appendQueryParameter("page", "1");
+        uriBuilder.appendQueryParameter("sections?q", sortBy);
+        uriBuilder.appendQueryParameter("page-size", newsToShow);
+        uriBuilder.appendQueryParameter("api-key", "4aee8688-7436-4430-8b44-175e47a99404");
+
+        //base url http://content.guardianapis.com/search
+
+        //?production-office=uk&order-by=newest&use-date=published&show-tags=contributor&page=1&
+        // sections?q=business&page-size=100&api-key=4aee8688-7436-4430-8b44-175e47a99404";
+
+        return new NewsLoader(this, uriBuilder.toString());
     }
 
     @Override
