@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingsActivity"
-    tools:layout="@layout/activity_settings">
+    android:name="com.gmail.vtc.vlado.news.SettingsActivity$SettingsFragment">
 
 </fragment>
 
