@@ -9,7 +9,7 @@
     <string name="sort_by_key">sortByKey</string>
     <string name="input_number_key">inputNumberKey</string>
     <string name="news_to_show_key">news to show key</string>
-    <string name="news_to_show_default">0</string>
+    <string name="news_to_show_default">100</string>
     <string name="sort_by_default">All</string>
 
 

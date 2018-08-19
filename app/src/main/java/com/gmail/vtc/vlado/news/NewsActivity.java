@@ -10,8 +10,6 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,7 +21,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import java.security.SecurityPermission;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,7 +53,7 @@ public class NewsActivity extends AppCompatActivity
         if (networkInfo != null && networkInfo.isConnected()) {
             LoaderManager loaderManager = getLoaderManager();
             loaderManager.initLoader(NEWS_LOADER_ID, null, this);
-        }else {
+        } else {
             progressBar.setVisibility(View.GONE);
             emptyView.setText(R.string.no_internet);
         }
@@ -80,7 +77,7 @@ public class NewsActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == R.id.action_settings){
+        if (id == R.id.action_settings) {
             Intent settingsIntent = new Intent(this, SettingsActivity.class);
             startActivity(settingsIntent);
             return true;
@@ -92,7 +89,7 @@ public class NewsActivity extends AppCompatActivity
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 
         if (key.equals(getString(R.string.input_number_key)) ||
-                key.equals(getString(R.string.sort_by_key))){
+                key.equals(getString(R.string.sort_by_key))) {
             newsAdapter.clear();
 
             emptyView.setVisibility(View.GONE);
@@ -111,6 +108,7 @@ public class NewsActivity extends AppCompatActivity
                 getString(R.string.news_to_show_key),
                 getString(R.string.news_to_show_default));
 
+
         String sortBy = sharedPreferences.getString(
                 getString(R.string.sort_by_key),
                 getString(R.string.sort_by_default));
@@ -123,14 +121,11 @@ public class NewsActivity extends AppCompatActivity
         uriBuilder.appendQueryParameter("use-date", "published");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("page", "1");
-        uriBuilder.appendQueryParameter("sections?q", sortBy);
+        uriBuilder.appendQueryParameter("sections", sortBy);
         uriBuilder.appendQueryParameter("page-size", newsToShow);
         uriBuilder.appendQueryParameter("api-key", "4aee8688-7436-4430-8b44-175e47a99404");
 
-        //base url http://content.guardianapis.com/search
-
-        //?production-office=uk&order-by=newest&use-date=published&show-tags=contributor&page=1&
-        // sections?q=business&page-size=100&api-key=4aee8688-7436-4430-8b44-175e47a99404";
+        Log.d("LINK", uriBuilder.toString());
 
         return new NewsLoader(this, uriBuilder.toString());
     }
