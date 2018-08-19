@@ -85,20 +85,6 @@ public class NewsActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-
-        if (key.equals(getString(R.string.input_number_key)) ||
-                key.equals(getString(R.string.sort_by_key))) {
-            newsAdapter.clear();
-
-            emptyView.setVisibility(View.GONE);
-
-            getLoaderManager().restartLoader(NEWS_LOADER_ID, null, this);
-        }
-
-
-    }
 
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
@@ -149,5 +135,20 @@ public class NewsActivity extends AppCompatActivity
     @Override
     public void onLoaderReset(Loader<List<News>> loader) {
         newsAdapter.clear();
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+
+        if (key.equals(getString(R.string.input_number_key)) &&
+                key.equals(getString(R.string.sort_by_key))) {
+            newsAdapter.clear();
+
+            emptyView.setVisibility(View.GONE);
+
+            getLoaderManager().restartLoader(NEWS_LOADER_ID, null, this);
+        }
+
+
     }
 }

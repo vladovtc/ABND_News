@@ -19,14 +19,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     public static class SettingsFragment extends PreferenceFragment implements Preference.OnPreferenceChangeListener {
 
-        private void bindPreferenceSummaryToValue(Preference preference) {
-            preference.setOnPreferenceChangeListener(this);
-            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
-            String preferenceString = preferences.getString(preference.getKey(), "");
-            onPreferenceChange(preference, preferenceString);
-
-        }
-
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -55,6 +47,14 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 preference.setSummary(stringValue);
             }
             return true;
+        }
+
+        private void bindPreferenceSummaryToValue(Preference preference) {
+            preference.setOnPreferenceChangeListener(this);
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
+            String preferenceString = preferences.getString(preference.getKey(), "");
+            onPreferenceChange(preference, preferenceString);
+
         }
     }
 }
