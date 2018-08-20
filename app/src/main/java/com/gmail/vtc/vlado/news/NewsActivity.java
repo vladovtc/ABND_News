@@ -92,7 +92,7 @@ public class NewsActivity extends AppCompatActivity
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String newsToShow = sharedPreferences.getString(
-                getString(R.string.news_to_show_key),
+                getString(R.string.input_number_key),
                 getString(R.string.news_to_show_default));
 
 
@@ -108,7 +108,7 @@ public class NewsActivity extends AppCompatActivity
         uriBuilder.appendQueryParameter("use-date", "published");
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("page", "1");
-        uriBuilder.appendQueryParameter("sections", sortBy);
+        uriBuilder.appendQueryParameter("section", sortBy);
         uriBuilder.appendQueryParameter("page-size",newsToShow);
         uriBuilder.appendQueryParameter("api-key", "4aee8688-7436-4430-8b44-175e47a99404");
 
