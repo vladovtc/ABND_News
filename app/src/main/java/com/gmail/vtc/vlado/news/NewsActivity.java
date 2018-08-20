@@ -35,6 +35,7 @@ public class NewsActivity extends AppCompatActivity
     private ProgressBar progressBar;
     private TextView emptyView;
     private NewsAdapter newsAdapter;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,7 @@ public class NewsActivity extends AppCompatActivity
     @Override
     public Loader<List<News>> onCreateLoader(int id, Bundle args) {
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         String newsToShow = sharedPreferences.getString(
                 getString(R.string.news_to_show_key),
                 getString(R.string.news_to_show_default));
@@ -108,7 +109,7 @@ public class NewsActivity extends AppCompatActivity
         uriBuilder.appendQueryParameter("show-tags", "contributor");
         uriBuilder.appendQueryParameter("page", "1");
         uriBuilder.appendQueryParameter("sections", sortBy);
-        uriBuilder.appendQueryParameter("page-size", newsToShow);
+        uriBuilder.appendQueryParameter("page-size",newsToShow);
         uriBuilder.appendQueryParameter("api-key", "4aee8688-7436-4430-8b44-175e47a99404");
 
         Log.d("LINK", uriBuilder.toString());
@@ -148,7 +149,7 @@ public class NewsActivity extends AppCompatActivity
 
             getLoaderManager().restartLoader(NEWS_LOADER_ID, null, this);
         }
-
-
     }
+
+
 }

@@ -7,6 +7,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
@@ -29,13 +30,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             Preference newsToShow = findPreference(getString(R.string.input_number_key));
             bindPreferenceSummaryToValue(newsToShow);
-
         }
 
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
-
             if (preference instanceof ListPreference) {
                 ListPreference listPreference = (ListPreference) preference;
                 int preferenceIndex = listPreference.findIndexOfValue(stringValue);
@@ -54,7 +53,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(preference.getContext());
             String preferenceString = preferences.getString(preference.getKey(), "");
             onPreferenceChange(preference, preferenceString);
-
         }
     }
 }

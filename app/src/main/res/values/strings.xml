@@ -6,11 +6,11 @@
     <string name="title_activity_settings">SettingsActivity</string>
     <string name="settings_menu">Settings</string>
 
-    <string name="sort_by_key">sortByKey</string>
-    <string name="input_number_key">inputNumberKey</string>
-    <string name="news_to_show_key">news to show key</string>
-    <string name="news_to_show_default">100</string>
-    <string name="sort_by_default">All</string>
+    <string name="sort_by_key" translatable="false">sections</string>
+    <string name="input_number_key" translatable="false">inputNumberKey</string>
+    <string name="news_to_show_key" translatable="false">page-size</string>
+    <string name="news_to_show_default" translatable="false">10</string>
+    <string name="sort_by_default" translatable="false">All</string>
 
 
 </resources>
