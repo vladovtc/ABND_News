@@ -35,7 +35,7 @@ public class NewsActivity extends AppCompatActivity
     private ProgressBar progressBar;
     private TextView emptyView;
     private NewsAdapter newsAdapter;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +65,8 @@ public class NewsActivity extends AppCompatActivity
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setAdapter(newsAdapter);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        prefs.registerOnSharedPreferenceChangeListener(this);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
     }
 
     @Override
@@ -139,11 +139,11 @@ public class NewsActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
 
-        if (key.equals(getString(R.string.input_number_key)) &&
-                key.equals(getString(R.string.sort_by_key))) {
-            newsAdapter.clear();
+        if (s.equals(getString(R.string.input_number_key)) &&
+                s.equals(getString(R.string.sort_by_key))) {
+            //newsAdapter.clear();
 
             emptyView.setVisibility(View.GONE);
 
@@ -151,5 +151,9 @@ public class NewsActivity extends AppCompatActivity
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
+    }
 }
